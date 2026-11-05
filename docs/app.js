@@ -1,4 +1,5 @@
 const views={
+  home:{image:'ayvo-home-current.png',title:'Reprends le fil. <br>Crée la suite.',description:'Retrouve tes projets récents dès l’accueil, écoute leur dernière version de travail et reprends là où tu en étais. Tes quêtes créatives t’accompagnent pour garder le rythme.',points:['Projets récents et previews à portée de main', 'Un nouveau projet en un clic', 'Quêtes créatives et progression'],alt:'Accueil AYVO avec quatre projets récents, leurs waveforms et les quêtes de projet'},
   project:{image:'ayvo-project-current.png',title:'Ton morceau. <br>Tout autour.',description:'Ouvre le bon projet dans FL Studio, retrouve sa dernière preview et garde tes objectifs à portée de main. Tout part de la même fiche.',points:['Fichier FL Studio lié au projet','Preview, BPM et tonalité au même endroit','Objectifs et progression du morceau'],alt:'Fiche projet AYVO avec preview, fichier FL Studio et objectifs'},
   idea:{image:'ayvo-idea-current.png',title:'L’idée reste <br>avec le projet.',description:'Une phrase, une référence musicale, un moodboard ou une note vocale. Le pense-bête s’ouvre directement dans ton projet, pour garder sa direction créative sous les yeux.',points:['Texte et moodboard au même endroit','Liens musicaux pour tes inspirations','Notes vocales attachées au projet'],alt:'Le pense-bête ouvert dans un projet AYVO avec texte, moodboard, inspirations et note vocale'},
   library:{image:'ayvo-library.jpg',title:'Tes prods. <br>Prêtes à écouter.',description:'Tes exports rejoignent ta bibliothèque. Classe tes morceaux dans des packs, retrouve tes previews et réécoute tes créations sur ordinateur ou téléphone.',points:['Previews et morceaux exportés','Packs et rangement personnalisés','Partage par lien ou QR code'],alt:'Bibliothèque AYVO avec les packs et la liste des morceaux exportés'},
@@ -22,7 +23,7 @@ function wireTabs(selector, callback){
 function animateView(element){element.classList.remove('view-enter');void element.offsetWidth;element.classList.add('view-enter')}
 wireTabs('[data-view]',(tab,index)=>{
  const item=views[tab.dataset.view];$('#creative-image').src='assets/'+item.image;$('#creative-image').alt=item.alt;
- $('#creative-title').innerHTML=item.title;$('#creative-description').textContent=item.description;$('#creative-number').textContent=`0${index+1} / 04`;
+ $('#creative-title').innerHTML=item.title;$('#creative-description').textContent=item.description;$('#creative-number').textContent=`0${index+1} / 0${Object.keys(views).length}`;
  $('#creative-points').replaceChildren(...item.points.map(text=>{const li=document.createElement('li');li.textContent=text;return li}));
  $('#creative-panel').setAttribute('aria-labelledby',tab.id);$('#creative-panel .screenshot-button').dataset.zoom='assets/'+item.image;$('#creative-panel .screenshot-button').setAttribute('aria-label','Agrandir : '+tab.textContent);animateView($('#creative-panel'));
 });
